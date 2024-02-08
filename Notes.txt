@@ -1,0 +1,96 @@
+Merge Strategies in Git
+Read
+Courses
+Jobs
+Merge in Git allows you to join two or more development work created using git branch into a single branch. It incorporates the changes from named commits and diverges them into the current branch. Before making a merge option make sure the receiving branch and the merging branch are up-to-date with the latest remote changes.
+
+What are Merge Strategies?
+Git provides various methods to merge different commits into a base commit. These methods are called Merge Strategies. These base commits are combined to form merge commits. A merge commit is just like the regular commit except that it has two parent commits. Out of multiple strategies for the merging process, the git will automatically choose one if not specified explicitly. This automatic selection of the merge strategy is based on the branches provided for merging.
+
+There are various types of merge strategies :
+
+Fast Forward
+Recursive
+Ours
+Octopus
+Resolve
+Subtree
+Git merge will combine multiple sequences of commits into one unified history. In the most frequent use cases, git merge is used to combine two branches. Any of the upgiven strategies can be used to perform the merging process according to the needs of the project. The most commonly used strategies are Fast Forward Merge and Recursive Merge.
+
+Fast Forward Merge:
+Fast-Forward-Merge-Strategy
+In this most commonly used merge strategy, history is just one straight line. When you create a branch, make some commits in that branch, the time you’re ready to merge, there is no new merge on the master. That way master’s pointer is just moved straight forward and history is one straight line.
+Command:
+
+$ git rebase
+FF Merge Strategy
+ 
+FF Merge Strategy
+
+Recursive Merge:
+Recursive-Merge-Strategy
+In Recursive merge, after you branch and make some commits, there are some new original commits on the ‘master‘. So, when it’s time to merge, git recurses over the branch and creates a new merge commit. The merge commit continues to have two parents.
+Command:
+
+$ git merge--no-ff
+Recursive-merge-strategy
+
+Note: There is nothing right or wrong of either one of the strategies but with fast forward merge you have a straight line of history and with the recursive merge, it is of multiple lines.
+
+Fast-Forward merge vs Recursive merge:
+
+Fast Forward	Recursive
+No new commits on the master	New commits on the master
+Linear History	Commit 2 parents
+No merge commits	Merge commit is created
+git rebase	git merge–no-ff
+Ours Merge:
+Ours-Merge-Strategy
+This merge strategy resolves any number of heads, but the resulting tree of the merge is always that of the current branch head, effectively ignoring all changes from all other branches. It is meant to be used to supersede the old development history of side branches.
+Note: This strategy is different from the -Xours option to the ‘recursive‘ merge strategy.
+Command:
+
+$ git merge -s ours
+Ours-Merge-Strategy
+
+Octopus Merge:
+Octopus-Merge-Strategy
+Octopus Merge strategy resolves cases with more than two heads but refuses to do a complex merge that needs manual resolution. It is primarily meant to be used for bundling topic branch heads together. This is the default merge strategy when pulling or merging more than one branch.
+Command:
+
+$ git merge -s octopus
+Octopus-merge-Strategy-Example
+
+Resolve Merge:
+Resolve-Merge-Strategy
+This strategy can only resolve two heads (i.e. the current branch and another branch you pulled from) using a 3-way merge algorithm. It tries to carefully detect criss-cross merge ambiguities and is considered generally safe and fast.
+Command:
+
+$ git merge -s resolve
+Resolve-Merge-Strategy-Example
+
+Note: ‘-s resolve‘ solves only trivial conditions. If code differs between branches, the conflict has to be solved manually.
+
+Subtree Merge:
+Subtree-Merge-Strategy
+This is a modified recursive strategy. When merging trees A and B, if B corresponds to a subtree of A, B is first adjusted to match the tree structure of A, instead of reading the trees at the same level. This adjustment is also done to the common ancestor tree.
+Command:
+
+$ git merge -s subtree
+Subtree-Merge-Strategy-Example
+
+Manually call named merge strategy
+-s<Strategy> and –strategy=<Strategy>: These strategies can be supplied more than once to specify them in the order they should be tried. If there is no -s option, a built-in list of strategies is used instead (git merge-recursive when merging a single head, git merge-octopus otherwise).
+
+Command:
+
+$ git merge -s recursive
+$ git merge --strategy=octopus
+Manually-named-strategy
+
+Whether you're preparing for your first job interview or aiming to upskill in this ever-evolving tech landscape, GeeksforGeeks Courses are your key to success. We provide top-quality content at affordable prices, all geared towards accelerating your growth in a time-bound manner. Join the millions we've already empowered, and we're here to do the same for you. Don't miss out - check it out now!
+
+Looking for a place to share your ideas, learn, and connect? Our Community portal is just the spot! Come join us and see what all the buzz is about!
+
+
+Last Updated : 01 Jan, 2020
